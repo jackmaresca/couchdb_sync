@@ -21,19 +21,25 @@ var grunt = require('grunt');
     test.doesNotThrow(block, [error], [message])
     test.ifError(value)
 */
+var request = require('request');
 
 exports.couchdb = {
-  setUp: function(done) {
-    // setup here if necessary
-    done();
+  setUp: function(done) { done(); },
+
+  document: function(test) {
+    test.expect(1);
+    request.get('http://localhost:5984/cars/d4',function( err, response, body){
+      var attachments = JSON.parse(body)._attachments;
+      test.equal("text/javascript", attachments["js/app.js"] .content_type,'js file in correct path with content type');
+      test.done();
+    });
   },
 
-  default_options: function(test) {
-    console.log("hi");
+  app_js: function(test) {
     test.expect(1);
-
-    test.equal("actual", "expected", 'should describe what the default behavior is.');
-
-    test.done();
+    request.get('http://localhost:5984/cars/d4/js/app.js',function( err, response, body){
+      test.equal('text/javascript', response.headers['content-type'] , 'js file in correct path with content type');
+      test.done();
+    });
   },
 };

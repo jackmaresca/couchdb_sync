@@ -10,37 +10,44 @@
 var request = require('request');
 
 function couch_update(url, object, done){
-  request.get({url: url}, function(error, response, body){
-    if (response.statusCode == 200){
-      var rev = JSON.parse(body)._rev
+  request.get(url, function(error, response, body){
+    if (response.statusCode === 200){
+      var rev = JSON.parse(body)._rev;
       console.log("last revision = " + rev );
       object._rev = rev;
-    };
-
+    }
     request.put({url: url, body: JSON.stringify(object)},function(error, response, body){
       console.log("response = " + response.statusCode );
       done();
     });
   });
-};
+}
+
+function content_type (filepath){
+  var extension = filepath.split('.').pop();
+  if ( extension === "js" ){
+    extension = "javascript";
+  }
+  return "text/" + extension;
+}
 
 module.exports = function(grunt) {
   grunt.registerMultiTask('couchdb', 'uploads a directory into one couch document with many attachments', function() {
-    // Merge task-specific and/or target-specific options with these defaults.
+
     var done = this.async();
     this.files.forEach(function(f) {
-      var result = {},
+      var attachments = {},
           start_at = f.orig.src[0].length - 6;
 
       f.src.forEach(function(filepath) {
-          result[filepath.substring(start_at,200)] = {
-            "content_type": "text/html",
+          attachments[filepath.substring(start_at,200)] = {
+            "content_type": content_type(filepath),
             "data":         new Buffer(grunt.file.read(filepath)).toString('base64')
           };
       });
 
       grunt.log.writeln('upload to "' + f.dest );
-      couch_update(f.dest, result, done);
+      couch_update(f.dest, { _attachments: attachments }, done);
     });
   });
 };

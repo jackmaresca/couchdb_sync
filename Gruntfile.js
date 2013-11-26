@@ -24,7 +24,7 @@ module.exports = function(grunt) {
     },
 
     couchdb: {
-      default_options: {
+      d4: {
         src:    'test/fixtures/d4/**/*.*',
         filter: 'isFile',
         dest:   'http://localhost:5984/cars/d4'
