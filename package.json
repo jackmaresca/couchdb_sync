@@ -1,5 +1,5 @@
 {
-  "name": "grunt_couchdb",
+  "name": "couchdb_sync",
   "description": "uploads a directory into one couch document with many attachments",
   "version": "0.1.0",
   "homepage": "https://github.com/fbehrens/grunt_couchdb",
@@ -36,6 +36,7 @@
     "grunt": "~0.4.2"
   },
   "keywords": [
-    "gruntplugin"
+    "gruntplugin",
+    "couchdb",
   ]
 }
