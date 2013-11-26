@@ -28,24 +28,12 @@ module.exports = function(grunt) {
       tests: ['tmp'],
     },
 
-    // Configuration to be run (and then tested).
     couchdb: {
       default_options: {
-        options: {
-        },
-        src:    ['test/fixtures/d4/**/*'],
+        src:    'test/fixtures/d4/**/*.*',
         filter: 'isFile',
-        couch:  'http://localhost:5984/cars/d4'
-      }
-      // custom_options: {
-      //   options: {
-      //     separator: ': ',
-      //     punctuation: ' !!!',
-      //   },
-      //   files: {
-      //     'tmp/custom_options': ['test/fixtures/testing', 'test/fixtures/123'],
-      //   },
-      // },
+        dest:   'http://localhost:5984/cars/d4'
+      },
     },
 
     // Unit tests.
