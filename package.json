@@ -1,0 +1,42 @@
+{
+  "name": "couchdb",
+  "description": "uploads a directory into one couch document with many attachments",
+  "version": "0.1.0",
+  "homepage": "https://github.com/fbehrens/grunt_couchdb",
+  "author": {
+    "name": "Frank Behrens",
+    "email": "fbehrens@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:fbehrens/grunt_couchdb.git"
+  },
+  "bugs": {
+    "url": "https://github.com/fbehrens/grunt_couchdb/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/fbehrens/grunt_couchdb/blob/master/LICENSE-MIT"
+    }
+  ],
+  "main": "Gruntfile.js",
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "devDependencies": {
+    "grunt-contrib-jshint": "~0.6.0",
+    "grunt-contrib-clean": "~0.4.0",
+    "grunt-contrib-nodeunit": "~0.2.0",
+    "grunt": "~0.4.2"
+  },
+  "peerDependencies": {
+    "grunt": "~0.4.2"
+  },
+  "keywords": [
+    "gruntplugin"
+  ]
+}
