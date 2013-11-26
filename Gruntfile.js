@@ -23,11 +23,6 @@ module.exports = function(grunt) {
       },
     },
 
-    // Before generating any new files, remove any previously-created files.
-    clean: {
-      tests: ['tmp'],
-    },
-
     couchdb: {
       default_options: {
         src:    'test/fixtures/d4/**/*.*',
@@ -36,11 +31,9 @@ module.exports = function(grunt) {
       },
     },
 
-    // Unit tests.
     nodeunit: {
       tests: ['test/*_test.js'],
     },
-
   });
 
   // Actually load this plugin's task(s).
@@ -48,14 +41,12 @@ module.exports = function(grunt) {
 
   // These plugins provide necessary tasks.
   grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-nodeunit');
 
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.
-  grunt.registerTask('test', ['clean', 'couchdb', 'nodeunit']);
+  grunt.registerTask('test', [ 'couchdb', 'nodeunit']);
 
   // By default, lint and run all tests.
   grunt.registerTask('default', ['jshint', 'test']);
-
 };
