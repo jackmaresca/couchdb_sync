@@ -1,7 +1,7 @@
 {
   "name": "couchdb_sync",
   "description": "uploads a directory tree into one couch document with many attachments",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "https://github.com/fbehrens/grunt_couchdb",
   "author": {
     "name": "Frank Behrens",

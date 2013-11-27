@@ -1,6 +1,6 @@
 /*
- * couchdb
- * https://github.com/fbehrens/grunt_couchdb
+ * couchdb_sync
+ * https://github.com/fbehrens/couchdb_sync
  *
  * Copyright (c) 2013 Frank Behrens
  * Licensed under the MIT license.
@@ -32,7 +32,7 @@ function content_type (filepath){
 }
 
 module.exports = function(grunt) {
-  grunt.registerMultiTask('couchdb', 'uploads a directory into one couch document with many attachments', function() {
+  grunt.registerMultiTask('couchdb_sync', 'uploads a directory into one couch document with many attachments', function() {
 
     var done = this.async();
     this.files.forEach(function(f) {

@@ -23,7 +23,7 @@ module.exports = function(grunt) {
       },
     },
 
-    couchdb: {
+    couchdb_sync: {
       d4: {
         src:    'test/fixtures/d4/**/*.*',
         filter: 'isFile',
@@ -45,7 +45,7 @@ module.exports = function(grunt) {
 
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.
-  grunt.registerTask('test', [ 'couchdb', 'nodeunit']);
+  grunt.registerTask('test', [ 'couchdb_sync', 'nodeunit']);
 
   // By default, lint and run all tests.
   grunt.registerTask('default', ['jshint', 'test']);
