@@ -1,23 +1,23 @@
 {
   "name": "couchdb_sync",
   "description": "uploads a directory tree into one couch document with many attachments",
-  "version": "0.1.1",
-  "homepage": "https://github.com/fbehrens/grunt_couchdb",
+  "version": "0.1.2",
+  "homepage": "https://github.com/fbehrens/couchdb_sync",
   "author": {
     "name": "Frank Behrens",
     "email": "fbehrens@gmail.com"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:fbehrens/grunt_couchdb.git"
+    "url": "git@github.com:fbehrens/couchdb_sync.git"
   },
   "bugs": {
-    "url": "https://github.com/fbehrens/grunt_couchdb/issues"
+    "url": "https://github.com/fbehrens/couchdb_sync/issues"
   },
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/fbehrens/grunt_couchdb/blob/master/LICENSE-MIT"
+      "url": "https://github.com/fbehrens/couchdb_sync/blob/master/LICENSE-MIT"
     }
   ],
   "main": "Gruntfile.js",
