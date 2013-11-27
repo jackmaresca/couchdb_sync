@@ -1,7 +1,7 @@
 {
   "name": "couchdb_sync",
   "description": "uploads a directory tree into one couch document with many attachments",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "homepage": "https://github.com/fbehrens/couchdb_sync",
   "author": {
     "name": "Frank Behrens",
@@ -30,10 +30,10 @@
   "devDependencies": {
     "grunt-contrib-jshint": "~0.6.0",
     "grunt-contrib-nodeunit": "~0.2.0",
-    "grunt": "~0.4.2"
+    "grunt": "~0.4"
   },
   "peerDependencies": {
-    "grunt": "~0.4.2"
+    "grunt": "~0.4"
   },
   "keywords": [
     "gruntplugin",
