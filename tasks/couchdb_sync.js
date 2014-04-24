@@ -1,6 +1,6 @@
 /*
  * couchdb_sync
- * https://github.com/fbehrens/couchdb_sync
+ * https://github.com/jackmaresca/couchdb_sync
  *
  * Copyright (c) 2013 Frank Behrens
  * Licensed under the MIT license.
@@ -8,46 +8,62 @@
 
 'use strict';
 var request = require('request');
+var fs = require('fs');
 
-function couch_update(url, object, done){
-  request.get(url, function(error, response, body){
-    if (response.statusCode === 200){
-      var rev = JSON.parse(body)._rev;
-      console.log("last revision = " + rev );
-      object._rev = rev;
-    }
-    request.put({url: url, body: JSON.stringify(object)},function(error, response, body){
-      console.log("response = " + response.statusCode );
-      done();
-    });
-  });
-}
+
 
 function content_type (filepath){
   var extension = filepath.split('.').pop();
+  var prefix = "text/";
   if ( extension === "js" ){
     extension = "javascript";
   }
-  return "text/" + extension;
+  if(extension === "zip")
+	  prefix="application/"
+  return prefix + extension;
 }
 
 module.exports = function(grunt) {
   grunt.registerMultiTask('couchdb_sync', 'uploads a directory into one couch document with many attachments', function() {
 
     var done = this.async();
-    this.files.forEach(function(f) {
-      var attachments = {},
-          start_at = f.orig.src[0].length - 6;
+    var attachArray = [];
 
+    this.files.forEach(function(f) {
+      var nano = require('nano')(f.dest);
+      
       f.src.forEach(function(filepath) {
-          attachments[filepath.substring(start_at,200)] = {
-            "content_type": content_type(filepath),
-            "data":         new Buffer(grunt.file.read(filepath)).toString('base64')
-          };
+    	  var filename = filepath.split(/(\\|\/)/g).pop();
+    	  grunt.log.writeln('filepath "' + filepath );
+    	  nano.get(f.doc, function(err, body2) {
+    		  if (!err){
+        	    fs.readFile(filepath, function(err2, data) {
+            	  if (!err2) {
+            	    nano.attachment.insert(f.doc, filename, data, content_type(filepath),
+            	    { rev:body2._rev }, function(err3, body) {
+            	        if (!err3)
+            	          console.log(body);
+            	    });
+            	  }
+            	 });
+    	  		}else if(err.error==='not_found'){
+    	  			//CREATE DOC
+            	    fs.readFile(filepath, function(err2, data) {
+                  	  if (!err2) {
+                  	    nano.attachment.insert(f.doc, filename, data, content_type(filepath),
+                  	     function(err3, body) {
+                  	        if (!err3)
+                  	          console.log(body);
+                  	    });
+                  	  }
+                  	 });   	  			
+	
+    	  		}
+    	  });
       });
 
       grunt.log.writeln('upload to "' + f.dest );
-      couch_update(f.dest, { _attachments: attachments }, done);
+
     });
   });
 };
