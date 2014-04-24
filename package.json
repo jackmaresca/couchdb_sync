@@ -1,7 +1,7 @@
 {
   "name": "couchdb_sync_nano",
   "description": "uploads a directory tree into one couch document with many attachments",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "homepage": "https://github.com/jackmaresca/couchdb_sync",
   "author": {
     "name": "Frank Behrens",
