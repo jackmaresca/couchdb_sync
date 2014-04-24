@@ -1,18 +1,18 @@
 {
-  "name": "couchdb_sync",
+  "name": "couchdb_sync_nano",
   "description": "uploads a directory tree into one couch document with many attachments",
   "version": "0.1.4",
-  "homepage": "https://github.com/fbehrens/couchdb_sync",
+  "homepage": "https://github.com/jackmaresca/couchdb_sync",
   "author": {
     "name": "Frank Behrens",
     "email": "fbehrens@gmail.com"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:fbehrens/couchdb_sync.git"
+    "url": "git@github.com:jackmaresca/couchdb_sync.git"
   },
   "bugs": {
-    "url": "https://github.com/fbehrens/couchdb_sync/issues"
+    "url": "https://github.com/jackmaresca/couchdb_sync/issues"
   },
   "licenses": [
     {
