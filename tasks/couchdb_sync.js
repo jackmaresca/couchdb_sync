@@ -26,7 +26,7 @@ module.exports = function(grunt) {
   grunt.registerMultiTask('couchdb_sync', 'uploads a directory into one couch document with many attachments', function() {
 
     var done = this.async();
-    var attachArray = [];
+
 
     this.files.forEach(function(f) {
       var nano = require('nano')(f.dest);
@@ -58,6 +58,7 @@ module.exports = function(grunt) {
                   	 });   	  			
 	
     	  		}
+    	  		done();
     	  });
       });
 
